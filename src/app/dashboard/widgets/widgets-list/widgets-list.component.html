@@ -1,0 +1,30 @@
+<mat-card style="padding: 10px">
+    <mat-card-title>
+        Widgets
+    </mat-card-title>
+    <mat-card-content>
+        <mat-list data-cy="widgets-list">
+            <mat-list-item
+                *ngFor="let widget of widgets"
+                attr.data-cy="widget-{{widget.id}}-item"
+                class="mat-list-option"
+                (click)="selected.emit(widget)"
+                style="height: 100%; margin-bottom: 3%; margin-top: 3%;">
+                <span matLine attr.data-cy="widget-{{widget.id}}-item-title">{{widget.title}}</span>
+                <button 
+                    *ngIf="!readonly"
+                    attr.data-cy="delete-widget-{{widget.id}}-btn"
+                    mat-icon-button
+                    type="button"
+                    color="warn"
+                    style="position:absolute;
+                    left: 80%;
+                    bottom: 2%;
+                    text-align: center;"
+                    (click)="deleted.emit(widget); $event.stopImmediatePropagation()">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
